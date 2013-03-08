@@ -49,11 +49,16 @@ group :development, :test do
   gem 'factory_girl', '~> 2.2'
   gem 'webrat'
   gem 'rspec-rails', '~> 2.0'
-  gem 'simplecov', :require => false
   gem 'sqlite3'
   gem 'cucumber'
   gem 'cucumber-rails', :require => false
   gem 'cucumber-rails-training-wheels'
   gem 'database_cleaner'
   gem 'capybara'
+
+  gem 'simplecov', :require => false
+  # https://github.com/kina/simplecov-rcov-text
+  gem 'simplecov-rcov-text', :require => false  
+  gem 'railroady'
+  gem 'launchy'
 end
