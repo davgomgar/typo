@@ -55,4 +55,8 @@ module Admin::ContentHelper
     html << "</select>"
     html << "</div>"
   end  
+
+  def insert_div_if(condition, attributes={}, &block)
+      content_tag("div", attributes, &block) if condition
+  end
 end

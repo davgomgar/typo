@@ -240,6 +240,10 @@ Then /^the "([^"]*)" checkbox(?: within (.*))? should be checked$/ do |label, pa
   end
 end
 
+Then /^show me the page$/ do
+  save_and_open_page
+end
+
 Then /^the "([^"]*)" checkbox(?: within (.*))? should not be checked$/ do |label, parent|
   with_scope(parent) do
     field_checked = find_field(label)['checked']
@@ -273,6 +277,4 @@ Then /^(?:|I )should have the following query string:$/ do |expected_pairs|
   end
 end
 
-Then /^show me the page$/ do
-  save_and_open_page
-end
+
