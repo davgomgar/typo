@@ -6,16 +6,18 @@ Given /^the logged user is an admin$/ do
   }
 end
 
-Given /^the logged user is not an admin$/ do
-  step %{the blog is set up}
+Given /^a publisher user exists$/ do
+
   User.create!({:login => 'publisher',
                 :password => 'fakepass',
                 :email => 'joe@snsadow.com',
                 :profile_id => 2,
                 :name => 'publisher',
                 :state => 'active'})
-  #Login
-  visit '/accounts/login'
+end
+
+When /^I log as a publisher$/ do
+visit '/accounts/login'
 
   fill_in 'user_login', :with => 'publisher'
   fill_in 'user_password', :with => 'fakepass'
@@ -25,5 +27,12 @@ Given /^the logged user is not an admin$/ do
   else
     assert page.has_content?('Login successful')
   end
+end
+
+Given /^the logged user is not an admin$/ do
+  steps %{Given the blog is set up
+          And a publisher user exists
+          When I log as a publisher
+        }  
 end
 

@@ -147,7 +147,7 @@
       <%= render 'admin/content/attachment', { :attachment_num => 1, :hidden => false } -%>
     </ul>
   </div>
-  <%= insert_div_if(current_user.admin?, :class => '') do %>
+  <%= insert_div_if(current_user.admin? && !@article.id.nil?, :class => '') do %>
     <h4>Merge Articles</h4>
     <%= text_field_tag "merge_id", '', :placeholder => 'Enter article ID...', :autocomplete => 'off', :style => "width: 15%"%>
     <%=button_to "Merge"%>
