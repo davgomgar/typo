@@ -544,6 +544,22 @@ describe Admin::ContentController do
         Article.should_not be_exists({:id => draft.id})
         Article.should_not be_exists({:id => draft_2.id})
       end
+
+      describe  "Merge Articles" do
+        before(:each) do
+          @two = Article.create!(type: :article, :title => "Feature Article #1", :author => "admin", 
+            :body => " This is article 1 created from a feature", :published => true)
+          @three = Article.create!(type: :article, :title => "Feature Article #2", :author => "admin", 
+            :body => " This is article 2 being created from a feature", :published => true)
+        end
+
+        it "should find the article to merge with" do
+          post 'merge_articles', {merge_with: 3, current_id: 1}
+          article = stub_model(Article, id: 1)
+          merge_article = Article.stub(:find).with(article.id).and_return(Factory.create(:article))
+          merge_article.should_not be_nil
+        end
+      end
     end
 
     describe 'resource_add action' do

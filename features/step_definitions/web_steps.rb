@@ -277,4 +277,3 @@ Then /^(?:|I )should have the following query string:$/ do |expected_pairs|
   end
 end
 
-

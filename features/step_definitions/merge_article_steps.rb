@@ -36,3 +36,24 @@ Given /^the logged user is not an admin$/ do
         }  
 end
 
+Given /^two articles exist$/ do
+  Article.create!(type: :article, :title => "Feature Article #1", :author => "admin", 
+    :body => " This is article 1 created from a feature", :published => true)
+  Article.create!(type: :article, :title => "Feature Article #2", :author => "admin", 
+    :body => " This is article 2 being created from a feature", :published => true)
+end
+
+When /^I merge the article with the article (\d+)$/ do |article_id|
+  steps %{
+          When I fill in "merge_with" with "#{article_id}"
+          And I fill in the hidden "current_id" with "1"
+          And I press "Merge"
+         }
+end
+
+Then /^I should see the articles merged$/ do
+  step %{I should see "The articles were merged"}
+end
+
+
+

@@ -2,5 +2,11 @@
 <%= form_tag(form_action, :id => "#{form_type}_form", :enctype => "multipart/form-data", :class => className) do %>
 
   <%= render :partial => "form" %>
-
+<% end %>
+<%=form_tag(action: :merge_articles) %>
+ <%= insert_div_if(current_user.admin? && !@article.id.nil?, :class => '') do %>
+    <h4>Merge Articles</h4>
+    <%=hidden_field_tag "current_id", @article.id %>
+    <%= text_field_tag "merge_with", '', :placeholder => 'Enter article ID...', :autocomplete => 'off', :style => "width: 15%"%>
+    <%=button_to "Merge", {:action => :merge_articles}, {:class => "btn primary"}%>
 <% end %>

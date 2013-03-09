@@ -628,7 +628,27 @@ describe Article do
         article.should be == already_exist_article
       end
     end
-
   end
+
+  describe "#merge_with" do
+
+    before(:each) do
+      @article = Factory.create(:article)
+    end
+
+    it "should raise an exception if other article is not found in database" do 
+      other_article = stub_model(Article, id: 123)
+      expect { @article.merge_with(other_article.id) }.to raise_error(ActiveRecord::RecordNotFound)
+    end
+
+    it "should merge article bodies" do
+       other_article = stub_model(Article, :id => 333, :body => "And the winner is...")
+       merged_article = Factory.create(:article)
+       merged_article.body = @article.body + other_article.body
+       @article.stub(:merge_with).with(other_article.id).and_return(merged_article)
+       merged_article.body.should include(other_article.body)
+    end
+  end
+
 end
 
