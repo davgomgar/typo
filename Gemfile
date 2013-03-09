@@ -57,8 +57,4 @@ group :development, :test do
   gem 'capybara'
 
   gem 'simplecov', :require => false
-  # https://github.com/kina/simplecov-rcov-text
-  gem 'simplecov-rcov-text', :require => false  
-  gem 'railroady'
-  gem 'launchy'
 end
