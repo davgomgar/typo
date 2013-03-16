@@ -19,6 +19,7 @@ module NavigationHelpers
       '/admin/content/new'
 
     when /^the edit article (\d+) page$/ then "/admin/content/edit/#{$1}"
+    when /^the admin dashboard page$/ then "/admin"
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
